@@ -1,0 +1,26 @@
+{% set uwsgi = salt['grains.filter_by']({
+    'Debian': {
+        'config': '/etc/uwsgi',
+        'pkg': 'uwsgi',
+        'plugin_pkg': {
+            'greenlet': 'uwsgi-plugin-greenlet-python',
+            'php': 'uwsgi-plugin-php',
+            'psgi': 'uwsgi-plugin-psgi',
+            'python': 'uwsgi-plugin-python',
+            'python3': 'uwsgi-plugin-python3',
+        },
+        'service': 'uwsgi',
+    },
+    'Fedora': {
+        'config': '/etc/uwsgi.d',
+        'pkg': 'uwsgi',
+        'plugin_pkg': {
+            'greenlet': 'uwsgi-plugin-greenlet',
+            'php': 'uwsgi-plugin-php',
+            'psgi': 'uwsgi-plugin-psgi',
+            'python': 'uwsgi-plugin-python',
+            'python3': 'wsgi-plugin-python3',
+        },
+        'service': 'uwsgi',
+    },
+}, merge=salt['pillar.get']('template:lookup')) %}

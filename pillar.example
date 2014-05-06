@@ -1,0 +1,6 @@
+uwsgi:
+  plugins:
+    # plugin installation defaults to false
+    # see uwsgi/init.sls for plugin list
+    php: false
+    python: true
